@@ -31,17 +31,11 @@ d3.json('./static/data/samples.json').then( d => {
     }];
     
     var barLayout = {
-          barmode: 'group',
           xaxis: { title: 'Value'},
           plot_bgcolor: 'lightgrey',
           paper_bgcolor: 'lightgrey',
-          margin: {
-            l: 100,
-            r: 10,
-            b: 60,
-            t: 10,
-            pad: 5
-          }
+          bargap: 0.05,
+          margin: { l: 100, r: 10, b: 60, t: 10, pad: 5 }
     };
     
     var config = {responsive: true}
@@ -74,13 +68,7 @@ d3.json('./static/data/samples.json').then( d => {
         yaxis: { title: 'Value'},
         plot_bgcolor: 'lightgrey',
         paper_bgcolor: 'lightgrey',
-        margin: {
-          l: 100,
-          r: 10,
-          b: 50,
-          t: 10,
-          pad: 5
-        }
+        margin: { l: 50, r: 10, b: 50, t: 10, pad: 5 }
     };
       
     Plotly.newPlot('bubble', bubbleData, bubbleLayout, config);
