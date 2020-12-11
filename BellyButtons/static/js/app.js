@@ -8,59 +8,49 @@ function unpack(rows, index) {
 // load data from json file supplied
 d3.json('./static/data/samples.json').then( d => {
 
-    // console.log(unpack(d.samples, 'sample_values')[0]); 
-    // console.log(unpack(d.samples, 'otu_ids')[0]); 
-    // console.log(unpack(d.samples, 'otu_labels')[0]); 
-
-    // bar chart
-    var onePerson10 = {
-        'value': unpack(d.samples, 'sample_values')[0].slice(0,10).reverse(),
-        'id': unpack(d.samples, 'otu_ids')[0].slice(0,10).reverse(),
-        'label': unpack(d.samples, 'otu_labels')[0].slice(0,10).reverse()
-    };
-    var barColor = onePerson10.id;
-    onePerson10.id = onePerson10.id.map(i => 'OTU ' + i.toString());
-    
-    var barData = [{
-        type: 'bar',
-        orientation: 'h',
-        x: onePerson10.value,
-        y: onePerson10.id,
-        text: onePerson10.label,
-        marker: { color: '#0090ff' }
-    }];
-    
-    var barLayout = {
-          xaxis: { title: 'Value'},
-          plot_bgcolor: 'lightgrey',
-          paper_bgcolor: 'lightgrey',
-          bargap: 0.05,
-          margin: { l: 100, r: 10, b: 60, t: 10, pad: 5 }
-    };
-    
-    var config = {responsive: true}
-
-    Plotly.newPlot('bar', barData, barLayout, config);
-      
-    // scatter plot
-    var onePersonAll = {
+    // data
+    var onePerson = {
         'value': unpack(d.samples, 'sample_values')[0],
         'id': unpack(d.samples, 'otu_ids')[0],
         'label': unpack(d.samples, 'otu_labels')[0]
     };
 
+    // responsive charts
+    var config = {responsive: true}
+
+    // bar chart
+    var barData = [{
+        type: 'bar',
+        orientation: 'h',
+        x: onePerson.value.slice(0,10).reverse(),
+        y: onePerson.id.slice(0,10).reverse().map(i => 'OTU ' + i.toString()),
+        text: onePerson.label.slice(0,10).reverse(),
+        marker: { color: '#0090ff' }
+    }];
+    
+    var barLayout = {
+        xaxis: { title: 'Value'},
+        yaxis: { title: 'Microbe'},
+        plot_bgcolor: 'lightgrey',
+        paper_bgcolor: 'lightgrey',
+        bargap: 0.05,
+        margin: { l: 100, r: 10, b: 60, t: 10, pad: 5 }
+    };
+    
+    Plotly.newPlot('bar', barData, barLayout, config);
+      
+    // scatter plot
     var bubbleData = [{
         type: 'bubble',
         mode: 'markers',
-        x: onePersonAll.id,
-        y: onePersonAll.value,
-        text: onePersonAll.label,
+        x: onePerson.id,
+        y: onePerson.value,
+        text: onePerson.label,
         marker: { 
-            size: onePersonAll.value, 
-            color: onePersonAll.id,
+            size: onePerson.value, 
+            color: onePerson.id,
             colorscale: 'Jet'
         }
-
     }];
     
     var bubbleLayout = {
@@ -81,8 +71,5 @@ d3.json('./static/data/samples.json').then( d => {
         .text(`${v[0]} : ${v[1]}`)
         .append('br');
     });
-
-
-
 
 });
