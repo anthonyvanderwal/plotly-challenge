@@ -18,21 +18,35 @@ d3.json('./static/data/samples.json').then( d => {
         'id': unpack(d.samples, 'otu_ids')[0].slice(0,10).reverse(),
         'label': unpack(d.samples, 'otu_labels')[0].slice(0,10).reverse()
     };
+    var barColor = onePerson10.id;
     onePerson10.id = onePerson10.id.map(i => 'OTU ' + i.toString());
-
+    
     var barData = [{
         type: 'bar',
         orientation: 'h',
         x: onePerson10.value,
         y: onePerson10.id,
-        text: onePerson10.label
+        text: onePerson10.label,
+        marker: { color: '#0090ff' }
     }];
     
     var barLayout = {
-          barmode: 'group'
+          barmode: 'group',
+          xaxis: { title: 'Value'},
+          plot_bgcolor: 'lightgrey',
+          paper_bgcolor: 'lightgrey',
+          margin: {
+            l: 100,
+            r: 10,
+            b: 60,
+            t: 10,
+            pad: 5
+          }
     };
     
-    Plotly.newPlot('bar', barData, barLayout);
+    var config = {responsive: true}
+
+    Plotly.newPlot('bar', barData, barLayout, config);
       
     // scatter plot
     var onePersonAll = {
@@ -52,13 +66,23 @@ d3.json('./static/data/samples.json').then( d => {
             color: onePersonAll.id,
             colorscale: 'Jet'
         }
+
     }];
     
     var bubbleLayout = {
         xaxis: { title: 'OTU ID'},
+        plot_bgcolor: 'lightgrey',
+        paper_bgcolor: 'lightgrey',
+        margin: {
+          l: 100,
+          r: 10,
+          b: 50,
+          t: 10,
+          pad: 5
+        }
     };
       
-    Plotly.newPlot('bubble', bubbleData, bubbleLayout);
+    Plotly.newPlot('bubble', bubbleData, bubbleLayout, config);
 
     // info box
     var onePersonDem = d.metadata[0];
@@ -71,5 +95,5 @@ d3.json('./static/data/samples.json').then( d => {
 
 
 
-    
+
 });
