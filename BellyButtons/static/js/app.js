@@ -61,6 +61,15 @@ d3.json('./static/data/samples.json').then( d => {
     Plotly.newPlot('bubble', bubbleData, bubbleLayout);
 
     // info box
+    var onePersonDem = d.metadata[0];
+    Object.entries(onePersonDem).forEach( v => {
+        d3.select('#sample-metadata')
+        .append('text')
+        .text(`${v[0]} : ${v[1]}`)
+        .append('br');
+    });
 
 
+
+    
 });
