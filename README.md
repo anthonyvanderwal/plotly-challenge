@@ -5,21 +5,21 @@
 <br><br>
 
 ---
-### Level 1
+### Step 1
 - [website](https://anthonyvanderwal.github.io/javascript-challenge/UFO-level-1/) deployed on GitHub Pages.
 - [javascript](./UFO-level-1/static/js/app.js) app to render and filter table.
 - [html](./UFO-level-1/index.html) template for website.
 - [css](./UFO-level-1/static/css/style.css) with style for template.
 
 ---
-### Level 2
+### Advanced Challenge
 - [website](https://anthonyvanderwal.github.io/javascript-challenge/UFO-level-2/) deployed on GitHub Pages.
 - [javascript](./UFO-level-2/static/js/app.js) app to render and filter table.
 - [html](./UFO-level-2/index.html) template for website.
 - [css](./UFO-level-2/static/css/style.css) with style for template.
 
 ---
-### Screenshots - level 2
+### Screenshots
 **Website for small screen**  
 <kbd><img style="margin-left:0px;border:0px solid blue;" 
      height='300' title="small"
