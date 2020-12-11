@@ -71,6 +71,7 @@ d3.json('./static/data/samples.json').then( d => {
     
     var bubbleLayout = {
         xaxis: { title: 'OTU ID'},
+        yaxis: { title: 'Value'},
         plot_bgcolor: 'lightgrey',
         paper_bgcolor: 'lightgrey',
         margin: {
