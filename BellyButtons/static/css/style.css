@@ -9,3 +9,5 @@ body, html {
     background-position: bottom center;
     background-size: cover;
   }
+
+  #sample-metadata { font-size: 1.2rem;}

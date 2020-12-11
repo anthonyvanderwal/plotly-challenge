@@ -39,7 +39,7 @@ d3.json('./static/data/samples.json').then( d => {
     
     Plotly.newPlot('bar', barData, barLayout, config);
       
-    // scatter plot
+    // bubble chart
     var bubbleData = [{
         type: 'bubble',
         mode: 'markers',
@@ -63,12 +63,12 @@ d3.json('./static/data/samples.json').then( d => {
       
     Plotly.newPlot('bubble', bubbleData, bubbleLayout, config);
 
-    // info box
+    // info panel
     var onePersonDem = d.metadata[0];
     Object.entries(onePersonDem).forEach( v => {
         d3.select('#sample-metadata')
         .append('text')
-        .text(`${v[0]} : ${v[1]}`)
+        .text(`${v[0].toUpperCase()} : ${v[1]}`)
         .append('br');
     });
 
