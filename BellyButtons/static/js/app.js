@@ -23,7 +23,7 @@ d3.json('./static/data/samples.json').then( d => {
         type: 'bar',
         orientation: 'h',
         x: onePerson.value.slice(0,10).reverse(),
-        y: onePerson.id.slice(0,10).reverse().map(i => 'OTU ' + i.toString()),
+        y: onePerson.id.slice(0,10).reverse().map( i => 'OTU ' + i.toString() ),
         text: onePerson.label.slice(0,10).reverse(),
         marker: { color: '#0090ff' }
     }];
