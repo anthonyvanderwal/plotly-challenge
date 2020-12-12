@@ -10,4 +10,8 @@ body, html {
     background-size: cover;
   }
 
-  #sample-metadata { font-size: 1.2rem;}
+  .jumbotron { padding: 0; }
+  
+  .panel-body { background-color: lightgrey; }
+
+  /* #sample-metadata { font-size: 1.2rem; } */
