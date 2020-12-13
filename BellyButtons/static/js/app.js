@@ -12,25 +12,39 @@ d3.json('./static/data/samples.json').then( d => {
         'demographics': d.metadata,
     };   
 
+    // numercial scale for gauge
+    var wfreqs = unpack(d.metadata, 'wfreq');
+    var maxWfreq = Math.max.apply(Math, wfreqs.filter( d => { return d != null }));
+    
+    // color scale for gauge
+    gaugeColor = [];
+    for (i = 0; i < maxWfreq; i+= 0.1) {
+        var rgbPct = i / maxWfreq;
+        gaugeColor.push({ 
+            range: [i, i+1], 
+            color: `rgb(${(1 - rgbPct) * 255},${rgbPct * 255},0)` 
+        });
+    };
+
     // populate list of id to choose from
-    idList(ids);
+    // idList(ids);
 
     // populate dropdown list with participant id
-    function idList(data) {
-        var dropList = d3.select('#selDataset');
-        dropList.selectAll('option')
-            .data(data)
-            .enter()
-            .append('option')
-                .attr( 'value', d => d )
-                .text( d => d );
-    }
+    // function idList(data) {
+    var dropList = d3.select('#selDataset');
+    dropList.selectAll('option')
+        .data(ids)
+        .enter()
+        .append('option')
+            .attr( 'value', d => d )
+            .text( d => d );
+    // }
 
     // populate site with an initial set of data
-    init(data.value[0], data.id[0], data.label[0], data.demographics[0]);
+    init(data.value[0], data.id[0], data.label[0], data.demographics[0], maxWfreq);
 
     // function calls on the first set of data '[0]'
-    function init(value, id, label, demographics) {
+    function init(value, id, label, demographics, maxW) {
 
         // responsive charts
         var config = {responsive: true}
@@ -80,9 +94,31 @@ d3.json('./static/data/samples.json').then( d => {
         Object.entries(demographics).forEach( v => {
             d3.select('#sample-metadata')
             .append('text')
-            .text(`${v[0].toUpperCase()} : ${v[1]}`)
+            .text(`${v[0]} : ${v[1]}`)
             .append('br');
         });
+
+        // gauge
+        var gaugeData = [{
+            domain: { x:[0,1], y:[0,1]},
+            value: demographics.wfreq,
+            type: 'indicator',
+            mode: 'gauge+number',
+            title: { text: `Scrubs per Week | Participant: ${demographics.id}` },
+            gauge: {
+                axis: { range: [null, maxW] },
+                bar: { color: 'black' },
+                bordercolor: 'gray',
+                steps: gaugeColor
+            }
+        }];
+        var gaugeLayout = {
+            plot_bgcolor: 'lightgrey',
+            paper_bgcolor: 'lightgrey',
+            // margin: { l: 80, r: 80, b: 0, t: 0, pad: 5 }
+        };
+        Plotly.newPlot('gauge', gaugeData, gaugeLayout, config);
+       
     }
 
     // listen for changes to 'select' tag and update plots/info
@@ -109,9 +145,14 @@ d3.json('./static/data/samples.json').then( d => {
         Object.entries(newDemo).forEach( v => {
             d3.select('#sample-metadata')
             .append('text')
-            .text(`${v[0].toUpperCase()} : ${v[1]}`)
+            .text(`${v[0]} : ${v[1]}`)
             .append('br');
         });
+
+        // gauge
+        Plotly.restyle('gauge', 'value', [newDemo.wfreq]);
+        Plotly.restyle('gauge', 'title', [{ text: `Scrubs per Week | Participant: ${newDemo.id}` }]);
+
     }
 
     // helper function for unpacking json string

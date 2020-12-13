@@ -22,12 +22,15 @@
 
     <div class='row'>
       
-      <div class='col-md-3'>
+      <div class='col-md-2'>
 
-        <div class='well'>
-          <h5>Choose ID:</h5>
-          <select id='selDataset' size='10'></select>
-          <!-- <select id='selDataset' size='10' onchange='idChange(this.value)'></select> -->
+        <div class='panel panel-primary'>
+          <div class='panel-heading'>
+            <h3 class='panel-title'>Choose Participant</h3>
+          </div>
+          <div class='panel-body text-center'>
+            <select id='selDataset' size='10'></select>
+          </div>
         </div>
 
         <div class='panel panel-primary'>
@@ -39,7 +42,7 @@
 
       </div>
 
-        <div class='col-md-4'>
+        <div class='col-md-5'>
           <div class='panel panel-primary'>
             <div class='panel-heading'>
               <h3 class='panel-title'>Top-10 Microbes</h3>
@@ -56,10 +59,7 @@
             <div id='gauge'></div>
           </div>
         </div>
-
-
-
-
+    
     </div>
     
     <div class='row'>
@@ -78,9 +78,7 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js'></script>
   <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
   <script src='./static/js/app.js'></script>
-  <!-- <script src='./static/js/bonus.js'></script> -->
   <script src='./static/data/samples.json'></script>
-  
   
 </body>
 
