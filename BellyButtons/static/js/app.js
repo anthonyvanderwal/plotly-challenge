@@ -4,20 +4,20 @@ d3.json('./static/data/samples.json').then( d => {
     // list of participant ids
     var ids = d.names;
 
-    // data
+    // all relevant experiment data
     var data = {
         'value': unpack(d.samples, 'sample_values'),
         'id': unpack(d.samples, 'otu_ids'),
         'label': unpack(d.samples, 'otu_labels'),
         'demographics': d.metadata,
     };   
-
-    // numercial scale for gauge
-    var wfreqs = unpack(d.metadata, 'wfreq');
-    var maxWfreq = Math.max.apply(Math, wfreqs.filter( d => { return d != null }));
     
-    // color scale for gauge
-    gaugeColor = [];
+    // numercial scale for gauge chart
+    var wfreqs = unpack(data.demographics, 'wfreq');
+    var maxWfreq = Math.max.apply(Math, wfreqs.filter( d => { return d != null }));
+
+    // colorscale for gauge chart
+    var gaugeColor = [];
     for (i = 0; i < maxWfreq; i+= 0.1) {
         var rgbPct = i / maxWfreq;
         gaugeColor.push({ 
@@ -25,27 +25,30 @@ d3.json('./static/data/samples.json').then( d => {
             color: `rgb(${(1 - rgbPct) * 255},${rgbPct * 255},0)` 
         });
     };
+                
+    // populate participant choice list
+    idList(ids);
 
-    // populate list of id to choose from
-    // idList(ids);
+    // function to create options in select tag
+    function idList(data) {
+        var dropList = d3.select('#selDataset');
+        dropList.selectAll('option')
+            .data(data)
+            .enter()
+            .append('option')
+                .attr( 'value', d => d )
+                .text( d => d );
+    }
 
-    // populate dropdown list with participant id
-    // function idList(data) {
-    var dropList = d3.select('#selDataset');
-    dropList.selectAll('option')
-        .data(ids)
-        .enter()
-        .append('option')
-            .attr( 'value', d => d )
-            .text( d => d );
-    // }
-
-    // populate site with an initial set of data
+    // populate page with initial set of data
     init(data.value[0], data.id[0], data.label[0], data.demographics[0], maxWfreq);
 
-    // function calls on the first set of data '[0]'
+    // function to create graphs and info-box
     function init(value, id, label, demographics, maxW) {
 
+        // select initial participant id
+        d3.select('#selDataset').select('option').property('selected', true);
+        
         // responsive charts
         var config = {responsive: true}
 
@@ -118,15 +121,16 @@ d3.json('./static/data/samples.json').then( d => {
             // margin: { l: 80, r: 80, b: 0, t: 0, pad: 5 }
         };
         Plotly.newPlot('gauge', gaugeData, gaugeLayout, config);
-       
+    
     }
 
     // listen for changes to 'select' tag and update plots/info
     d3.selectAll('#selDataset').on('change', update);    
 
-    //  restyle plots and info box with selected id info
+    //  function to restyle plots and info-box with selected participant
     function update() {
     
+        // data
         var key = Object.keys(ids).find( key => ids[key] == this.value) ;
         var newId = data.id[key];
         var newValue = data.value[key];
