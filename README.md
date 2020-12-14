@@ -6,24 +6,24 @@
 
 ---
 ### Dashboard
-- [website](https://anthonyvanderwal.github.io/javascript-challenge/UFO-level-1/) deployed on GitHub Pages.
-- [javascript](./UFO-level-1/static/js/app.js) app to render and filter table.
-- [html](./UFO-level-1/index.html) template for website.
-- [css](./UFO-level-1/static/css/style.css) with style for template.
+- [website](https://anthonyvanderwal.github.io/plotly-challenge/BellyButtons/) deployed on GitHub Pages.
+- [javascript](./BellyButtons/static/js/app.js) app to render and filter table.
+- [html](./BellyButtons/index.html) template for website.
+- [css](./BellyButtons/static/css/style.css) with style for template.
 
 ---
 ### Screenshots
 **Website for small screen**  
 <kbd><img style="margin-left:0px;border:0px solid blue;" 
      height='300' title="small"
-     src="./UFO-level-2/static/images/ufo-l2-small.png" /></kbd>
+     src="./BellyButtons/static/images/bb-small.png" /></kbd>
 
 **Website for medium screen**  
 <kbd><img style="margin-left:0px;border:0px solid blue;" 
      height='300' title="medium"
-     src="./UFO-level-2/static/images/ufo-l2-medium.png" /></kbd>
+     src="./BellyButtons/static/images/bb-medium.png" /></kbd>
 
 **Website for large screen**  
 <kbd><img style="margin-left:0px;border:0px solid blue;" 
      height='300' title="large"
-     src="./UFO-level-2/static/images/ufo-l2-large.png" /></kbd>
+     src="./BellyButtons/static/images/bb-large.png" /></kbd>
