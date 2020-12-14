@@ -13,18 +13,24 @@
 <body>
 
   <div class='container'>
+    
+    <!-- banner -->
     <div class='row'>
+
+      <!-- one column centre aligned -->
       <div class='col-md-6 col-md-push-3 jumbotron text-center'>
         <h2>Belly Button Biodiversity</h2>
         <p>Explore the Belly Button</p>
       </div>
     </div>
 
+
+    <!-- first row -- selector, info, barchart, gauge -->
     <div class='row'>
       
+      <!-- first column -->
       <div class='col-md-2'>
-
-        <div class='panel panel-primary'>
+        <div class='panel panel-primary'><!-- selector -->
           <div class='panel-heading'>
             <h3 class='panel-title'>Choose Participant</h3>
           </div>
@@ -32,53 +38,58 @@
             <select id='selDataset' size='10'></select>
           </div>
         </div>
-
-        <div class='panel panel-primary'>
+        <div class='panel panel-primary'><!-- info box -->
           <div class='panel-heading'>
             <h3 class='panel-title'>Demographic Info</h3>
           </div>
           <div id='sample-metadata' class='panel-body'></div>
         </div>
-
+      </div>
+      
+      <!-- second column -->
+      <div class='col-md-5'>
+        <div class='panel panel-primary'><!-- bar chart -->
+          <div class='panel-heading'>
+            <h3 class='panel-title'>Top-10 Microbes</h3>
+          </div>
+          <div id='bar'></div>
+        </div>
+      </div>
+      
+      <!-- third column -->
+      <div class='col-md-5'>
+        <div class='panel panel-primary'><!-- gauge -->
+          <div class='panel-heading'>
+            <h3 class='panel-title'>Washing Frequency</h3>
+          </div>
+          <div id='gauge'></div>
+        </div>
       </div>
 
-        <div class='col-md-5'>
-          <div class='panel panel-primary'>
-            <div class='panel-heading'>
-              <h3 class='panel-title'>Top-10 Microbes</h3>
-            </div>
-            <div id='bar'></div>
-          </div>
-        </div>
-    
-        <div class='col-md-5'>
-          <div class='panel panel-primary'>
-            <div class='panel-heading'>
-              <h3 class='panel-title'>Washing Frequency</h3>
-            </div>
-            <div id='gauge'></div>
-          </div>
-        </div>
-    
     </div>
+
     
+    <!-- second row -- bubble chart -->
     <div class='row'>
+      
+      <!-- one column -->
       <div class='col-md-12'>
-        <div class='panel panel-primary'>
+        <div class='panel panel-primary'><!-- bubble chart -->
           <div class='panel-heading'>
             <h3 class='panel-title'>All Microbes</h3>
           </div>
           <div id='bubble'></div>
         </div>
       </div>
+
     </div>
 
   </div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js'></script>
   <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-  <script src='./static/js/app.js'></script>
-  <script src='./static/data/samples.json'></script>
+  <script src='./static/js/app.js'></script><!-- js app using d3 -->
+  <script src='./static/data/samples.json'></script><!-- data -->
   
 </body>
 
