@@ -16,14 +16,14 @@
 **Website for small screen**  
 <kbd><img style="margin-left:0px;border:0px solid blue;" 
      height='300' title="small"
-     src="./BellyButtons/static/images/bb-small.png" /></kbd>
+     src="./BellyButtons/static/img/bb-small.png" /></kbd>
 
 **Website for medium screen**  
 <kbd><img style="margin-left:0px;border:0px solid blue;" 
      height='300' title="medium"
-     src="./BellyButtons/static/images/bb-medium.png" /></kbd>
+     src="./BellyButtons/static/img/bb-medium.png" /></kbd>
 
 **Website for large screen**  
 <kbd><img style="margin-left:0px;border:0px solid blue;" 
      height='300' title="large"
-     src="./BellyButtons/static/images/bb-large.png" /></kbd>
+     src="./BellyButtons/static/img/bb-large.png" /></kbd>
