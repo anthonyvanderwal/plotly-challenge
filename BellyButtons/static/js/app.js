@@ -40,15 +40,15 @@ d3.json('./static/data/samples.json').then( d => {
                 .text( d => d );
     }
 
+    // highlight initial participant id in list
+    d3.select('#selDataset').select('option').property('selected', true);
+
     // populate page with initial set of data
     init(data.value[0], data.id[0], data.label[0], data.demographics[0], maxWfreq);
 
     // function to create graphs and info-box
     function init(value, id, label, demographics, maxW) {
-
-        // select initial participant id
-        d3.select('#selDataset').select('option').property('selected', true);
-        
+      
         // responsive charts
         var config = {responsive: true}
 
